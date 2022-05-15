@@ -20,7 +20,7 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
     <link rel="stylesheet" href="/styles.css">
     <title>Паркинг</title>
 
-    
+
 
 </head>
 
@@ -31,65 +31,65 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
 
 
             <!--начало работы с левой частью картинки  -->
-            <div class="col-xs-6 ml-3">
+            <div class="col-xs-6">
                 <div class="map podsvet">
-                    <svg viewBox="0 0 750 886" id="1">
+                    <svg viewBox="0 0 750 886" id="svg_1">
                         <a href="/378a.php" id='mm378a'>
-                            <path class="car_place" d="m 233.28332,614.91969 v -18.47017 l -38.58913,0.3552 -8e-5,18.11497 z" title="MM/378a" id='m378a'>
+                            <path class="car_place parks" d="m 233.28332,614.91969 v -18.47017 l -38.58913,0.3552 -8e-5,18.11497 z" title="MM/378a" id='378a'>
                         </a>
                         <a href="/123.php">
-                            <path class="park_left" d="m 389.68849,698.36009 0.21224,-34.5846 -14.23219,-0.0951 -4e-5,34.67968 z" title="MB/123" id='m123'>
+                            <path class="park_left parks" d="m 389.68849,698.36009 0.21224,-34.5846 -14.23219,-0.0951 -4e-5,34.67968 z" title="MB/123" id='123'>
                         </a>
                         <a href="/126.php">
-                            <path class="park_left" d="m 334.35629,767.37427 v -12.53668 l -20.76695,0.24109 -4e-5,12.29559 z" title="MB/126" id='m126'>
+                            <path class="park_left parks" d="m 334.35629,767.37427 v -12.53668 l -20.76695,0.24109 -4e-5,12.29559 z" title="MB/126" id='126'>
                         </a>
                         <a href="/127.php">
-                            <path class="park_left" d="m 355.1232,767.37427 v -12.7825 l -20.76691,0.24582 -4e-5,12.53668 z" title="MB/127" id='m127'>
+                            <path class="park_left parks" d="m 355.1232,767.37427 v -12.7825 l -20.76691,0.24582 -4e-5,12.53668 z" title="MB/127" id='127'>
                         </a>
                         <a href="/128.php">
-                            <path class="park_left" d="m 375.89007,767.36954 v -13.02832 l -20.76687,0.25055 -4e-5,12.77777 z" title="MB/128" id='m128'>
+                            <path class="park_left parks" d="m 375.89007,767.36954 v -13.02832 l -20.76687,0.25055 -4e-5,12.77777 z" title="MB/128" id='128'>
                         </a>
                         <a href="/129.php">
-                            <path class="park_left" d="m 395.09308,767.38198 v -13.29647 l -19.20301,0.25571 -4e-5,13.04076 z" title="MB/129" id='m129'>
+                            <path class="park_left parks" d="m 395.09308,767.38198 v -13.29647 l -19.20301,0.25571 -4e-5,13.04076 z" title="MB/129" id='129'>
                         </a>
                         <a href="/130.php">
-                            <path class="park_left" d="m 412.75562,767.39129 v -13.56668 l -17.66254,0.2609 -4e-5,13.30578 z" title="MB/130" id='m130'>
+                            <path class="park_left parks" d="m 412.75562,767.39129 v -13.56668 l -17.66254,0.2609 -4e-5,13.30578 z" title="MB/130" id='130'>
                         </a>
                         <a href="/131.php">
-                            <path class="park_left" d="m 431.41797,767.39129 v -13.80404 l -18.6623,0.26547 -5e-5,13.53857 z" title="MB/131" id='m131'>
+                            <path class="park_left parks" d="m 431.41797,767.39129 v -13.80404 l -18.6623,0.26547 -5e-5,13.53857 z" title="MB/131" id='131'>
                         </a>
                         <a href="/141.php">
-                            <path class="park_left" d="m 187.82676,592.10163 v -10.30944 l -17.99528,0.19826 -3e-5,10.11118 z" title="MB/141" id='m141'>
+                            <path class="park_left parks" d="m 187.82676,592.10163 v -10.30944 l -17.99528,0.19826 -3e-5,10.11118 z" title="MB/141" id='141'>
                         </a>
                         <a href="/142.php">
-                            <path class="park_left" d="m 207.77914,592.07596 v -10.25813 l -19.92684,0.19728 -3e-5,10.06085 z" title="MB/142" id='m142'>
+                            <path class="park_left parks" d="m 207.77914,592.07596 v -10.25813 l -19.92684,0.19728 -3e-5,10.06085 z" title="MB/142" id='142'>
                         </a>
                         <a href="/153.php">
-                            <path class="park_left" d="m 182.15956,712.65164 0.21992,-22.73213 -14.74675,-0.0625 -3e-5,22.79464 z" title="MB/153" id='m153'>
+                            <path class="park_left parks" d="m 182.15956,712.65164 0.21992,-22.73213 -14.74675,-0.0625 -3e-5,22.79464 z" title="MB/153" id='153'>
                         </a>
                         <a href="/154.php">
-                            <path class="park_left" d="m 196.90631,712.71414 0.21992,-22.73213 -14.74675,-0.0625 -3e-5,22.79464 z" title="MB/154" id='m154'>
+                            <path class="park_left parks" d="m 196.90631,712.71414 0.21992,-22.73213 -14.74675,-0.0625 -3e-5,22.79464 z" title="MB/154" id='154'>
                         </a>
                         <a href="/155.php">
-                            <path class="park_left" d="m 211.21609,712.8255 0.21289,-22.75386 -14.27586,-0.0625 -3e-5,22.81643 z" title="MB/155" id='m155'>
+                            <path class="park_left parks" d="m 211.21609,712.8255 0.21289,-22.75386 -14.27586,-0.0625 -3e-5,22.81643 z" title="MB/155" id='155'>
                         </a>
                         <a href="/160.php">
-                            <path class="park_left" d="m 394.63294,286.48165 14.86042,-0.2886 0.14713,14.43016 -14.99659,0.28869 z" title="MB/160" id="m160">
+                            <path class="park_left parks" d="m 394.63294,286.48165 14.86042,-0.2886 0.14713,14.43016 -14.99659,0.28869 z" title="MB/160" id="160">
                         </a>
                         <a href="/161.php">
-                            <path class="park_left" d="m 412.39339,286.48338 14.4297,-0.14578 -0.14575,14.14101 -14.28123,0 z" title="MB/161" id='m161'>
+                            <path class="park_left parks" d="m 412.39339,286.48338 14.4297,-0.14578 -0.14575,14.14101 -14.28123,0 z" title="MB/161" id='161'>
                         </a>
                         <a href="/162.php">
-                            <path class="park_left" d="m 452.91533,353.93962 0.18999,-28.59986 -12.73948,-0.0786 -2e-5,28.67851 z" title="MB/162" id='m162'>
+                            <path class="park_left parks" d="m 452.91533,353.93962 0.18999,-28.59986 -12.73948,-0.0786 -2e-5,28.67851 z" title="MB/162" id='162'>
                         </a>
                         <a href="/163.php">
-                            <path class="park_left" d="m 452.61633,383.6761 0.18547,-29.65493 -12.43598,-0.0815 -2e-5,29.73648 z" title="MB/163" id='m163'>
+                            <path class="park_left parks" d="m 452.61633,383.6761 0.18547,-29.65493 -12.43598,-0.0815 -2e-5,29.73648 z" title="MB/163" id='163'>
                         </a>
                         <a href="/135.php">
-                            <path class="park_left" d="m 513.53758,641.71999 0.18897,-25.41608 -12.67173,-0.0699 -3e-5,25.48596 z" title="MB/135" id='m135'>
+                            <path class="park_left parks" d="m 513.53758,641.71999 0.18897,-25.41608 -12.67173,-0.0699 -3e-5,25.48596 z" title="MB/135" id='135'>
                         </a>
                         <a href="/136.php">
-                            <path class="park_left" d="m 692.22864,753.35022 0.14019,-25.02113 -9.40077,-0.0688 -2e-5,25.08993 z" title="MB/136" id='m136'>
+                            <path class="park_left parks" d="m 692.22864,753.35022 0.14019,-25.02113 -9.40077,-0.0688 -2e-5,25.08993 z" title="MB/136" id='136'>
                         </a>
                     </svg>
                     <img src="/img/first_floor_empty_25_left_1.jpg" alt="схема паркинга слева">
@@ -100,39 +100,39 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
             <!--начало работы с правой частью картинки  -->
             <div class="col-xs-6">
                 <div class="map">
-                    <svg viewBox="0 0 750 886">
+                    <svg viewBox="0 0 750 886" id="svg_2">
                         <a href="/112.php">
-                            <path class="park_right" d="m 66.6642,220.51767 25.186056,-0.19826 0.467728,12.17317 -25.455525,-0.0232 z" title="MB/112" id='m112'>
+                            <path class="park_right parks" d="m 66.6642,220.51767 25.186056,-0.19826 0.467728,12.17317 -25.455525,-0.0232 z" title="MB/112" id='112'>
                         </a>
                         <a href="/114.php">
-                            <path class="park_right" d="m 140.06193,221.21122 19.05997,-1e-5 v 11.84029 l -19.05997,-1e-5 z" title="MB/114" id='m114'>
+                            <path class="park_right parks" d="m 140.06193,221.21122 19.05997,-1e-5 v 11.84029 l -19.05997,-1e-5 z" title="MB/114" id='114'>
                         </a>
                         <a href="/115.php">
-                            <path class="park_right" d="m 159.69948,221.06683 19.05997,-1e-5 v 11.84029 l -19.05997,-10e-6 z" title="MB/115" id='m115'>
+                            <path class="park_right parks" d="m 159.69948,221.06683 19.05997,-1e-5 v 11.84029 l -19.05997,-10e-6 z" title="MB/115" id='115'>
                         </a>
                         <a href="/119.php">
-                            <path class="park_right" d="m 120.66662,363.93204 19.05997,-10e-6 v 11.84029 l -19.05997,-10e-6 z" title="MB/119" id='m119'>
+                            <path class="park_right parks" d="m 120.66662,363.93204 19.05997,-10e-6 v 11.84029 l -19.05997,-10e-6 z" title="MB/119" id='119'>
                         </a>
                         <a href="/120.php">
-                            <path class="park_right" d="m 120.4456,384.10872 19.05997,-1e-5 V 395.949 l -19.05997,-1e-5 z" title="MB/120" id='m120'>
+                            <path class="park_right parks" d="m 120.4456,384.10872 19.05997,-1e-5 V 395.949 l -19.05997,-1e-5 z" title="MB/120" id='120'>
                         </a>
                         <a href="/139.php">
-                            <path class="park_right" d="m 18.239775,222.04943 h 21.015392 l 0.198259,10.90421 -21.213651,0.19826 z" title="MB/139" id='m139'>
+                            <path class="park_right parks" d="m 18.239775,222.04943 h 21.015392 l 0.198259,10.90421 -21.213651,0.19826 z" title="MB/139" id='139'>
                         </a>
                         <a href="/156.php">
-                            <path class="park_right" d="m 49.55567,221.64807 15.067639,0.19826 0.396517,25.17882 -15.265898,0 z" title="MB/156" id='m156'>
+                            <path class="park_right parks" d="m 49.55567,221.64807 15.067639,0.19826 0.396517,25.17882 -15.265898,0 z" title="MB/156" id='156'>
                         </a>
                         <a href="/165.php">
-                            <path class="park_right" d="m 242.15709,225.11863 19.76438,-1e-5 v 11.82273 l -19.76438,-1e-5 z" title="MB/165" id='m165'>
+                            <path class="park_right parks" d="m 242.15709,225.11863 19.76438,-1e-5 v 11.82273 l -19.76438,-1e-5 z" title="MB/165" id='165'>
                         </a>
                         <a href="/170.php">
-                            <path class="park_right" d="m 50.178099,247.24375 h 14.627915 l 0.384945,24.3374 -15.01286,0.36605 z" title="MB/170" id='m170'>
+                            <path class="park_right parks" d="m 50.178099,247.24375 h 14.627915 l 0.384945,24.3374 -15.01286,0.36605 z" title="MB/170" id='170'>
                         </a>
                         <a href="/121.php">
-                            <path class="park_right" d="m 360.46835,363.81544 19.05997,-1e-5 v 11.84029 l -19.05997,-10e-6 z" title="MB/121" id='m121'>
+                            <path class="park_right parks" d="m 360.46835,363.81544 19.05997,-1e-5 v 11.84029 l -19.05997,-10e-6 z" title="MB/121" id='121'>
                         </a>
                         <a href="/122.php">
-                            <path class="park_right" d="m 360.46285,384.25177 19.05997,-1e-5 v 11.84029 l -19.05997,-10e-6 z" title="MB/122" id='m122'>
+                            <path class="park_right parks" d="m 360.46285,384.25177 19.05997,-1e-5 v 11.84029 l -19.05997,-10e-6 z" title="MB/122" id='122'>
                         </a>
 
 
@@ -151,7 +151,7 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
                 <div id="parkListName" class="my-3 overflow-auto">
 
                     <?php while ($parking = mysqli_fetch_assoc($result_name)) { ?>
-                        <p class="list_place">
+                        <p class="list_place list_place_names">
                             <a href="/<?php echo $parking['name'] ?>.php" style="color: black">
                                 <span><?php echo $parking['id'] ?>. </span>
                                 <span> Место: <span><?php echo $parking['name'] ?></span> </span></br>
@@ -169,7 +169,7 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
                 <div id="parkListArea" class="my-3 overflow-auto" hidden>
 
                     <?php while ($parking = mysqli_fetch_assoc($result_area)) { ?>
-                        <p class="list_place">
+                        <p class="list_place list_place_areas">
                             <a href="/<?php echo $parking['name'] ?>.php" style="color: black">
                                 <span><?php echo $parking['id'] ?>. </span>
                                 <span> Место: <span><?php echo $parking['name'] ?></span> </span></br>
@@ -188,7 +188,7 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
                 <div id="parkListRentPrice" class="my-3 overflow-auto" hidden>
 
                     <?php while ($parking = mysqli_fetch_assoc($result_rentPrice)) { ?>
-                        <p class="list_place">
+                        <p class="list_place list_place_rentPrices">
                             <a href="/<?php echo $parking['name'] ?>.php" style="color: black">
                                 <span><?php echo $parking['id'] ?>. </span>
                                 <span> Место: <span><?php echo $parking['name'] ?></span> </span></br>
@@ -218,10 +218,68 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
 
     </div>
     <script>
+        let parks = document.getElementsByClassName("parks");
+        let list_place_names = document.getElementsByClassName("list_place_names");
+        let list_place = document.querySelectorAll(".list_place_name");
+        let elemSpiska = [];
+        for (i = 0; i < list_place_names.length; i++) {
+            elemSpiska.push(list_place_names[i].children[0].children[1].children[0].innerText);
+        }
+
+
+
+        // console.log(elemSpiska);
+
+
+
+        // for (k = 0; k < list_place_names.length; k++) {
+        //     console.log(k);
+        //     list_place_names[k].addEventListener("mouseover", () => {
+        //         for (i = 0; i < parks.length; i++) {
+        //         console.log(list_place_names[k]);
+        //         console.log(i);
+        //         document.getElementById(elemSpiska[i]).style.opacity = 1;
+        //         console.log(elemSpiska[i]);
+        //         }
+
+
+        //     });
+        // }
+
+
+        // РАБОЧИЙ КОД НАЧАЛО
+        // for ( let i = 0; i < list_place_names.length; i++) {
+        //     if(list_place_names[i].addEventListener("mouseover", () => {document.getElementById(elemSpiska[i]).style.opacity = 1}));
+        //     if(list_place_names[i].addEventListener("mouseout", () => {document.getElementById(elemSpiska[i]).style.opacity = 0}));
+        // }
+        // РАБОЧИЙ КОД КОНЕЦ         
+
+
+
+        for (let i = 0; i < list_place_names.length; i++) {
+            list_place_names[i].addEventListener("mouseover", () => {
+                return document.getElementById(elemSpiska[i]).style.opacity = 1;
+            });
+            list_place_names[i].addEventListener("mouseout", () => {
+                return document.getElementById(elemSpiska[i]).style.opacity = 0;
+            });
+         }
+
+
+
+
+
+
+
+
+
         showParkListName.addEventListener("click", () => {
             parkListName.hidden = false;
             parkListArea.hidden = true;
             parkListRentPrice.hidden = true;
+
+
+
 
         });
 
@@ -235,6 +293,7 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
             parkListArea.hidden = true;
             parkListRentPrice.hidden = false;
         });
+
 
 
 
