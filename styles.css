@@ -1,5 +1,5 @@
 .container-xs {
-    width: 100%;
+    width: 98%;
     height: 100%;
 }
 
@@ -28,14 +28,16 @@ svg {
 
 .park_left,
 .park_right {
-    opacity: 0.3;
+    opacity: 0;
     fill: blue;
 
     /* visibility: hidden; */
 }
-
+.parks {
+    opacity: 0;
+}
 .car_place {
-    opacity: 0.3;
+    opacity: 0;
 
     fill: green;
 }
