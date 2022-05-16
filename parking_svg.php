@@ -219,11 +219,25 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
     </div>
     <script>
         let parks = document.getElementsByClassName("parks");
+        let list_place_areas = document.getElementsByClassName("list_place_areas");
         let list_place_names = document.getElementsByClassName("list_place_names");
+        let list_place_rentPrices = document.getElementsByClassName("list_place_rentPrices");            
+
         let list_place = document.querySelectorAll(".list_place_name");
-        let elemSpiska = [];
+
+        let elemSpiskaNames = [];
         for (i = 0; i < list_place_names.length; i++) {
-            elemSpiska.push(list_place_names[i].children[0].children[1].children[0].innerText);
+            elemSpiskaNames.push(list_place_names[i].children[0].children[1].children[0].innerText);
+        }
+
+        let elemSpiskaAreas = [];
+        for (i = 0; i < list_place_names.length; i++) {
+            elemSpiskaAreas.push(list_place_areas[i].children[0].children[1].children[0].innerText);
+        }
+        
+        let elemSpiskaRentPrices = [];
+        for (i = 0; i < list_place_rentPrices.length; i++) {
+            elemSpiskaRentPrices.push(list_place_rentPrices[i].children[0].children[1].children[0].innerText);
         }
 
 
@@ -256,12 +270,30 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
 
 
 
-        for (let i = 0; i < list_place_names.length; i++) {
+        for (let i = 0; i < list_place_rentPrices.length; i++) {
+            list_place_rentPrices[i].addEventListener("mouseover", () => {
+                return document.getElementById(elemSpiskaRentPrices[i]).style.opacity = 1;
+            });
+            list_place_rentPrices[i].addEventListener("mouseout", () => {
+                return document.getElementById(elemSpiskaRentPrices[i]).style.opacity = 0.2;
+            });
+         }
+
+         for (let i = 0; i < list_place_areas.length; i++) {
+            list_place_areas[i].addEventListener("mouseover", () => {
+                return document.getElementById(elemSpiskaAreas[i]).style.opacity = 1;
+            });
+            list_place_areas[i].addEventListener("mouseout", () => {
+                return document.getElementById(elemSpiskaAreas[i]).style.opacity = 0.2;
+            });
+         }
+
+         for (let i = 0; i < list_place_names.length; i++) {
             list_place_names[i].addEventListener("mouseover", () => {
-                return document.getElementById(elemSpiska[i]).style.opacity = 1;
+                return document.getElementById(elemSpiskaNames[i]).style.opacity = 1;
             });
             list_place_names[i].addEventListener("mouseout", () => {
-                return document.getElementById(elemSpiska[i]).style.opacity = 0;
+                return document.getElementById(elemSpiskaNames[i]).style.opacity = 0.2;
             });
          }
 
