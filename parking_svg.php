@@ -5,9 +5,11 @@ $result_name = mysqli_query($mysqli, "SELECT * FROM `parking`"); // выборк
 
 // $result_mm = mysqli_query($mysqli, "SELECT * FROM `parking` WHERE `implement`= "MM""); // выборка только машиномест
 
-$result_area = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `area`"); // выборка всех мест в паркинге по возрастанию площадей
+$result_area_up = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `area`"); // выборка всех мест в паркинге по возрастанию площадей
+$result_area_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `area`DESC");
 
-$result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `rentPrice`"); // выборка всех мест в паркинге по возрастанию площадей
+$result_rentPrice_up = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `rentPrice`"); // выборка всех мест в паркинге по возрастанию площадей
+$result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `rentPrice`DESC");
 
 ?>
 <!doctype html>
@@ -17,22 +19,170 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link rel="stylesheet" href="/styles.css">
+    <!-- <link rel="stylesheet" href="/styles.css"> -->
     <title>Паркинг</title>
+
+    <style>
+        .container-fluid {
+            width: 100%;
+
+            /* height: 100%; */
+        }
+
+        @media (max-width: 764px) {
+
+            .map,
+            img,
+            #parkListName,
+            #parkListAreaUp,
+            #parkListAreaDown,
+            #parkListRentPriceUp,
+            #parkListRentPriceDown {
+                width: 100%;
+                font-size: 20%;
+
+            }
+        }
+
+        @media (max-width: 1920px) {
+
+            .map,
+            img,
+            #parkListName,
+            #parkListAreaUp,
+            #parkListAreaDown,
+            #parkListRentPriceUp,
+            #parkListRentPriceDown {
+                width: 100%;
+                font-size: 20%;
+
+            }
+        }
+
+
+        .map {
+            max-width: 30rem;
+            position: relative;
+            text-align: center;
+        }
+
+        svg {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .park_left,
+        .park_right {
+            opacity: 0.3;
+            fill: blue;
+
+            /* visibility: hidden; */
+        }
+
+        .parks {
+            opacity: 0.3;
+        }
+
+        .car_place {
+            opacity: 0.3;
+
+            fill: green;
+        }
+
+        .park_left:hover,
+        .park_right:hover {
+            opacity: 0.5;
+        }
+
+        .car_place:hover {
+            opacity: 0.5;
+        }
+
+        #parkListName,
+        #parkListAreaUp,
+        #parkListAreaDown,
+        #parkListRentPriceUp,
+        #parkListRentPriceDown {
+            /* width: 100%;
+            max-width: 60rem; */
+            height: 13%;
+            background-color: rgb(160, 133, 81);
+            color: black;
+            text-align: center;
+            padding: 0.2rem;
+            /* margin-left: 1rem;
+            margin-right: 1rem; */
+            border: 1px solid black;
+            border-radius: 0.5rem;
+            align-items: center;
+
+        }
+
+        #parkListSort {
+            /* padding-left: 1rem; */
+            /* width: 100%;
+            max-width: 60rem; */
+        }
+
+        .parkListAll {
+            width: 100%;
+            max-width: 60rem;
+        }
+
+        /* .list_place {
+            width: 100%;
+            height: 27%;
+            background-color: rgb(241, 230, 209);
+            color: black;
+            text-align: center;
+
+            padding-left: 0.2rem;
+            
+            border: 1px solid black;
+            border-radius: 0.3rem;
+            
+        } */
+
+        .list_place:hover {
+            background-color: rgb(192, 198, 221);
+            cursor: pointer;
+        }
+
+        .btn {
+            width: 100%;
+            height: auto;
+
+            background-color: rgb(241, 230, 209);
+
+            text-align: center;
+            padding: 0.3rem;
+            border: 1px solid black;
+            border-radius: 0.3rem;
+
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background-color: rgb(192, 198, 221);
+        }
+    </style>
 
 
 
 </head>
 
 <body>
-    <h3>Схема парковки на 1 этаже</h3>
-    <div class="container-xs">
+    <h5 style="text-align: left ; margin-left: 3rem;">Схема парковки на 1 этаже</h5>
+    <div class="container-fluid">
         <div class="row">
 
 
             <!--начало работы с левой частью картинки  -->
-            <div class="col-xs-6">
-                <div class="map podsvet">
+            <div class="col d-flex ">
+                <div class="map">
                     <svg viewBox="0 0 750 886" id="svg_1">
                         <a href="/378a.php" id='mm378a'>
                             <path class="car_place parks" d="m 233.28332,614.91969 v -18.47017 l -38.58913,0.3552 -8e-5,18.11497 z" title="MM/378a" id='378a'>
@@ -94,11 +244,6 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
                     </svg>
                     <img src="/img/first_floor_empty_25_left_1.jpg" alt="схема паркинга слева">
                 </div>
-            </div>
-            <!--конец работы с левой частью картинки  -->
-
-            <!--начало работы с правой частью картинки  -->
-            <div class="col-xs-6">
                 <div class="map">
                     <svg viewBox="0 0 750 886" id="svg_2">
                         <a href="/112.php">
@@ -140,22 +285,38 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
                     <img src="/img/first_floor_empty_25_right_1.jpg" alt="схема паркинга справа" id="park_right">
                 </div>
             </div>
+            <!--конец работы с левой частью картинки  -->
+
+            <!--начало работы с правой частью картинки  -->
+            <!-- <div class="col">
+                
+            </div> -->
             <!--конец работы с правой частью картинки  -->
 
         </div>
 
-        <div class="row mb-10">
+        <div class="row">
             <!-- начало списка -->
-            <div class="col-xs-6 mx-3 ">
+            <div class="col parkListAll">
+                <p>Сортировка по:</p>
+                <div id="parkListSort" class="row my-1 overflow-auto">
+                    
+                    <button type="button" class="btn btn-sm col-xs-2 col-2" id="showParkListName" style="font-size: 0.7rem;"><span> Номеру</span></button>
+                    <button type="button" class="btn btn-sm col-xs-5  col-2" id="showParkListAreaUp"><span>возр. площади места</span></button>
+                    <button type="button" class="btn btn-sm col-xs-5  col-2" id="showParkListAreaDown"><span>убыв. площади места</span></button>
+
+                    <button type="button" class="btn btn-sm col-xs-6 col-3" id="showParkListRentPriceUp"><span>возр. стоимости аренды</span></button>
+                    <button type="button" class="btn btn-sm col-xs-6 col-3" id="showParkListRentPriceDown"><span>убыв. стоимости аренды</span></button>
+                </div>
                 <!-- начало списка с сортировкой по имени -->
-                <div id="parkListName" class="my-3 overflow-auto">
+                <div id="parkListName" class="my-1 overflow-auto">
 
                     <?php while ($parking = mysqli_fetch_assoc($result_name)) { ?>
                         <p class="list_place list_place_names">
-                            <a href="/<?php echo $parking['name'] ?>.php" style="color: black">
+                            <a href="/<?php echo $parking['name'] ?>.php" style="color: black; font-size: 1.1rem;border: 1px solid black;" role="button" class="btn">
                                 <span><?php echo $parking['id'] ?>. </span>
-                                <span> Место: <span><?php echo $parking['name'] ?></span> </span></br>
-                                <span>Площадь: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['area'] ?></span> м<sup>2</span></br>
+                                <span> Место: <span><?php echo $parking['name'] ?></span> </span>
+                                <span>Площадь: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['area'] ?></span> м<sup>2</span>
                                 <span>Стоимость аренды: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['rentPrice'] ?></span> руб.</span>
                             </a>
                         </p>
@@ -165,15 +326,15 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
                 </div>
                 <!-- конец списка с сортировкой по имени -->
 
-                <!-- начало списка с сортировкой по площади -->
-                <div id="parkListArea" class="my-3 overflow-auto" hidden>
+                <!-- начало списка с сортировкой по возрастанию площади -->
+                <div id="parkListAreaUp" class="my-1 overflow-auto" hidden>
 
-                    <?php while ($parking = mysqli_fetch_assoc($result_area)) { ?>
+                    <?php while ($parking = mysqli_fetch_assoc($result_area_up)) { ?>
                         <p class="list_place list_place_areas">
-                            <a href="/<?php echo $parking['name'] ?>.php" style="color: black">
+                            <a href="/<?php echo $parking['name'] ?>.php" style="color: black; font-size: 1.1rem;border: 1px solid black;" role="button" class="btn">
                                 <span><?php echo $parking['id'] ?>. </span>
-                                <span> Место: <span><?php echo $parking['name'] ?></span> </span></br>
-                                <span>Площадь: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['area'] ?></span> м<sup>2</span></br>
+                                <span> Место: <span><?php echo $parking['name'] ?></span> </span>
+                                <span>Площадь: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['area'] ?></span> м<sup>2</span>
                                 <span>Стоимость аренды: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['rentPrice'] ?></span> руб.</span>
                             </a>
 
@@ -182,17 +343,35 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
                     }
                     ?>
                 </div>
-                <!-- конец списка с сортировкой по площади -->
+                <!-- конец списка с сортировкой по возрастанию площади -->
+                <!-- начало списка с сортировкой по убыванию площади -->
+                <div id="parkListAreaDown" class="my-1 overflow-auto" hidden>
 
-                <!-- начало списка с сортировкой по стоимости -->
-                <div id="parkListRentPrice" class="my-3 overflow-auto" hidden>
+                    <?php while ($parking = mysqli_fetch_assoc($result_area_down)) { ?>
+                        <p class="list_place list_place_areas">
+                            <a href="/<?php echo $parking['name'] ?>.php" style="color: black; font-size: 1.1rem;border: 1px solid black;" role="button" class="btn">
+                                <span><?php echo $parking['id'] ?>. </span>
+                                <span> Место: <span><?php echo $parking['name'] ?></span> </span>
+                                <span>Площадь: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['area'] ?></span> м<sup>2</span>
+                                <span>Стоимость аренды: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['rentPrice'] ?></span> руб.</span>
+                            </a>
 
-                    <?php while ($parking = mysqli_fetch_assoc($result_rentPrice)) { ?>
+                        </p>
+                    <?php
+                    }
+                    ?>
+                </div>
+                <!-- конец списка с сортировкой по убыванию площади -->
+
+                <!-- начало списка с сортировкой по возрастанию стоимости -->
+                <div id="parkListRentPriceUp" class="my-1 overflow-auto" hidden>
+
+                    <?php while ($parking = mysqli_fetch_assoc($result_rentPrice_up)) { ?>
                         <p class="list_place list_place_rentPrices">
-                            <a href="/<?php echo $parking['name'] ?>.php" style="color: black">
+                            <a href="/<?php echo $parking['name'] ?>.php" style="color: black; font-size: 1.1rem;border: 1px solid black;" role="button" class="btn">
                                 <span><?php echo $parking['id'] ?>. </span>
-                                <span> Место: <span><?php echo $parking['name'] ?></span> </span></br>
-                                <span>Площадь: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['area'] ?></span> м<sup>2</span></br>
+                                <span> Место: <span><?php echo $parking['name'] ?></span> </span>
+                                <span>Площадь: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['area'] ?></span> м<sup>2</span>
                                 <span>Стоимость аренды: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['rentPrice'] ?></span> руб.</span>
                             </a>
 
@@ -201,29 +380,47 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
                     }
                     ?>
                 </div>
-                <!-- конец списка с сортировкой по стоимости -->
+                <!-- конец списка с сортировкой по возрастанию стоимости -->
+                <!-- начало списка с сортировкой по убыванию стоимости -->
+                <div id="parkListRentPriceDown" class="my-1 overflow-auto" hidden>
+
+                    <?php while ($parking = mysqli_fetch_assoc($result_rentPrice_down)) { ?>
+                        <p class="list_place list_place_rentPrices">
+                            <a href="/<?php echo $parking['name'] ?>.php" style="color: black; font-size: 1.1rem;border: 1px solid black;" role="button" class="btn">
+                                <span><?php echo $parking['id'] ?>. </span>
+                                <span> Место: <span><?php echo $parking['name'] ?></span> </span>
+                                <span>Площадь: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['area'] ?></span> м<sup>2</span>
+                                <span>Стоимость аренды: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['rentPrice'] ?></span> руб.</span>
+                            </a>
+
+                        </p>
+                    <?php
+                    }
+                    ?>
+                </div>
+                <!-- конец списка с сортировкой по убыванию стоимости -->
             </div>
             <!-- конец списка -->
             <!-- начало кнопок фильтров -->
-            <div class="col-xs-6 mx-3 ">
+            <!-- <div class="col">
                 <div id="parkListSort" class="my-3 overflow-auto">
-                    <button type="button" class="btn btn-block" id="showParkListName"><span>Фильтр по возрастанию</span></br> <span>номера места</span></button></br>
-                    <button type="button" class="btn btn-block" id="showParkListArea"><span>Фильтр по возрастанию</span></br> <span>площади места</span></button></br>
-                    <button type="button" class="btn btn-block" id="showParkListRentPrice"><span>Фильтр по возрастанию</span></br> <span>стоимости аренды</span></button>
+                    <button type="button" class="btn btn-block" id="showParkListName"><span>номера места</span></button>
+                    <button type="button" class="btn btn-block" id="showParkListArea"><span>площади места</span></button>
+                    <button type="button" class="btn btn-block" id="showParkListRentPrice"><span>стоимости аренды</span></button>
                 </div>
-            </div>
+            </div> -->
             <!-- конец кнопок фильтров -->
         </div>
 
 
     </div>
     <script>
-        let parks = document.getElementsByClassName("parks");
+        // let parks = document.getElementsByClassName("parks");
         let list_place_areas = document.getElementsByClassName("list_place_areas");
         let list_place_names = document.getElementsByClassName("list_place_names");
-        let list_place_rentPrices = document.getElementsByClassName("list_place_rentPrices");            
+        let list_place_rentPrices = document.getElementsByClassName("list_place_rentPrices");
 
-        let list_place = document.querySelectorAll(".list_place_name");
+        // let list_place = document.querySelectorAll(".list_place_name");
 
         let elemSpiskaNames = [];
         for (i = 0; i < list_place_names.length; i++) {
@@ -231,42 +428,15 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
         }
 
         let elemSpiskaAreas = [];
-        for (i = 0; i < list_place_names.length; i++) {
+        for (i = 0; i < list_place_areas.length; i++) {
             elemSpiskaAreas.push(list_place_areas[i].children[0].children[1].children[0].innerText);
         }
-        
+
         let elemSpiskaRentPrices = [];
         for (i = 0; i < list_place_rentPrices.length; i++) {
             elemSpiskaRentPrices.push(list_place_rentPrices[i].children[0].children[1].children[0].innerText);
         }
-
-
-
-        // console.log(elemSpiska);
-
-
-
-        // for (k = 0; k < list_place_names.length; k++) {
-        //     console.log(k);
-        //     list_place_names[k].addEventListener("mouseover", () => {
-        //         for (i = 0; i < parks.length; i++) {
-        //         console.log(list_place_names[k]);
-        //         console.log(i);
-        //         document.getElementById(elemSpiska[i]).style.opacity = 1;
-        //         console.log(elemSpiska[i]);
-        //         }
-
-
-        //     });
-        // }
-
-
-        // РАБОЧИЙ КОД НАЧАЛО
-        // for ( let i = 0; i < list_place_names.length; i++) {
-        //     if(list_place_names[i].addEventListener("mouseover", () => {document.getElementById(elemSpiska[i]).style.opacity = 1}));
-        //     if(list_place_names[i].addEventListener("mouseout", () => {document.getElementById(elemSpiska[i]).style.opacity = 0}));
-        // }
-        // РАБОЧИЙ КОД КОНЕЦ         
+        
 
 
 
@@ -277,25 +447,25 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
             list_place_rentPrices[i].addEventListener("mouseout", () => {
                 return document.getElementById(elemSpiskaRentPrices[i]).style.opacity = 0.2;
             });
-         }
+        }
 
-         for (let i = 0; i < list_place_areas.length; i++) {
+        for (let i = 0; i < list_place_areas.length; i++) {
             list_place_areas[i].addEventListener("mouseover", () => {
                 return document.getElementById(elemSpiskaAreas[i]).style.opacity = 1;
             });
             list_place_areas[i].addEventListener("mouseout", () => {
                 return document.getElementById(elemSpiskaAreas[i]).style.opacity = 0.2;
             });
-         }
+        }
 
-         for (let i = 0; i < list_place_names.length; i++) {
+        for (let i = 0; i < list_place_names.length; i++) {
             list_place_names[i].addEventListener("mouseover", () => {
                 return document.getElementById(elemSpiskaNames[i]).style.opacity = 1;
             });
             list_place_names[i].addEventListener("mouseout", () => {
                 return document.getElementById(elemSpiskaNames[i]).style.opacity = 0.2;
             });
-         }
+        }
 
 
 
@@ -307,23 +477,75 @@ $result_rentPrice = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `ren
 
         showParkListName.addEventListener("click", () => {
             parkListName.hidden = false;
-            parkListArea.hidden = true;
-            parkListRentPrice.hidden = true;
+            parkListAreaUp.hidden = true;
+            parkListAreaDown.hidden = true;
+            parkListRentPriceUp.hidden = true;
+            parkListRentPriceDown.hidden = true;
 
+            showParkListName.style.backgroundColor = "rgb(141, 186, 238)";
+            showParkListAreaUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListAreaDown.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListRentPriceUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListRentPriceDown.style.backgroundColor = "rgb(241, 230, 209)";
 
 
 
         });
 
-        showParkListArea.addEventListener("click", () => {
+        showParkListAreaUp.addEventListener("click", () => {
             parkListName.hidden = true;
-            parkListArea.hidden = false;
-            parkListRentPrice.hidden = true;
+            parkListAreaUp.hidden = false;
+            parkListAreaDown.hidden = true;
+            parkListRentPriceUp.hidden = true;
+            parkListRentPriceDown.hidden = true;
+
+            showParkListName.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListAreaUp.style.backgroundColor = "rgb(141, 186, 238)";
+            showParkListAreaDown.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListRentPriceUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListRentPriceDown.style.backgroundColor = "rgb(241, 230, 209)";
+
+
+
         });
-        showParkListRentPrice.addEventListener("click", () => {
+        showParkListAreaDown.addEventListener("click", () => {
             parkListName.hidden = true;
-            parkListArea.hidden = true;
-            parkListRentPrice.hidden = false;
+            parkListAreaUp.hidden = true;
+            parkListAreaDown.hidden = false;
+            parkListRentPriceUp.hidden = true;
+            parkListRentPriceDown.hidden = true;
+
+            showParkListAreaUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListAreaDown.style.backgroundColor = "rgb(141, 186, 238)";
+            showParkListRentPriceUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListRentPriceDown.style.backgroundColor = "rgb(241, 230, 209)";
+        });
+
+        showParkListRentPriceUp.addEventListener("click", () => {
+            parkListName.hidden = true;
+            parkListAreaUp.hidden = true;
+            parkListAreaDown.hidden = true;
+            parkListRentPriceUp.hidden = false;
+            parkListRentPriceDown.hidden = true;
+
+            showParkListAreaUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListAreaDown.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListRentPriceUp.style.backgroundColor = "rgb(141, 186, 238)";
+            showParkListRentPriceDown.style.backgroundColor = "rgb(241, 230, 209)";
+
+        });
+
+        showParkListRentPriceDown.addEventListener("click", () => {
+            parkListName.hidden = true;
+            parkListAreaUp.hidden = true;
+            parkListAreaDown.hidden = true;
+            parkListRentPriceUp.hidden = true;
+            parkListRentPriceDown.hidden = false;
+
+            showParkListAreaUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListAreaDown.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListRentPriceUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListRentPriceDown.style.backgroundColor = "rgb(141, 186, 238)";
         });
 
 
