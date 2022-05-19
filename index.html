@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="shortcut icon" href="./img/parking.png" />
+
+    <title>Домашняя страница</title>
+    <style>
+        body {
+            background-image: url(/img/004.jpg);
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding: 0.25rem;
+
+        }
+
+        .btn {
+            width: 100%;
+            /* height: auto; */
+
+            background-color: rgb(158, 193, 110);
+
+            text-align: center;
+            padding: 0.3rem;
+            border: 1px solid black;
+            border-radius: 0.3rem;
+
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: rgb(192, 198, 221);
+        }
+
+        .nav-link {
+            width: 100%;
+            /* height: auto; */
+
+            background-color: rgb(158, 193, 110);
+
+            text-align: center;
+            padding: 0.3rem;
+            border: 1px solid black;
+            border-radius: 0.3rem;
+            margin: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .xxx {
+            /* width: 100%; */
+            border: 1px solid black;
+            width: 100%;
+            
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            padding: 0.5rem;
+            
+
+        }
+
+        .y_map {
+            width: 100%;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+        }
+
+        .maps {
+            padding: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <!-- Модальное окно начало-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Оповещение!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Страница находится в разработке.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Модальное окно конец-->
+        <nav class="navbar navbar-expand-lg navbar-light"
+            style="background-color: rgb(241, 230, 209); border-bottom:solid black 1px ;">
+            <div class="col-7" >
+                <p class="navbar-brand  ">Поиск по схеме:</p>
+                <div class="col">
+                    <a href="/sheme_1_floor.html" class="btn btn-sm col-xs-2  col-sm-2" role="button" aria-pressed="true">1 этаж</a>
+                    <button type="button" class="btn btn-sm col-xs-2   col-sm-2" data-toggle="modal" data-target="#exampleModal" ><span>2 этаж</span></button>
+                    <button type="button" class="btn btn-sm col-xs-2   col-sm-2" data-toggle="modal" data-target="#exampleModal"><span>3 этаж</span></button>
+                </div>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Переключатель навигации"
+                style="background-color: rgb(158, 193, 110)">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav ml-auto mr-auto   mt-2 mt-md-0" style="width: 100%;">
+                    <li class="nav-item active ">
+                        <a class="nav-link" href="/parking_svg.php">Список мест 1 этажа <span class="sr-only">(текущая)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">Список мест 2 этажа</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">Список мест 3 этажа</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <div class="col-12  xxx ">
+            <p style=" text-align: center; font-size: 1.1rem; font-weight: 600;">
+                Машиноместа и мото-веломеста в трёхэтажном паркинге.
+            </p>
+            <div class="col-md">
+                <h4>Контакты:</h4>
+                <h5>Адрес</h5>
+                <p>г. Москва, 1-я улица Машиностроения, 10.</p>
+                <h5>Телефон</h5>
+                <a href="tel:=+74951111111">+74951111111</a>
+                <h5>E-mail</h5>
+                <a href="mailto:myEmail@mail.ru">myEmail@mail.ru</a>
+                <h5>График работы</h5>
+                <p>Понедельник - пятница: с 9-30 по 20-30.</p>
+              </div>
+        </div>
+
+
+        <div class="col-12 maps">
+            <p style=" text-align: center; font-size: 1.1rem; font-weight: 600;">Схема прохода:</p>
+
+            <div class="y_map">
+                <script type="text/javascript" charset="utf-8" async
+                    src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A88f7f6be1682d7e8f2dcc08410be1e68b1c68b2c016216fcf842bc83e9c46f0f&amp;width=100%25&amp;height=350&amp;lang=ru_RU&amp;scroll=true"></script>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
