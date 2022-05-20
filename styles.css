@@ -85,7 +85,7 @@ svg {
 #parkListAreaDown,
 #parkListRentPriceUp,
 #parkListRentPriceDown {
-    height: 13%;
+    height: 100%;
     background-color: rgb(160, 133, 81);
     color: black;
     text-align: center;
@@ -95,9 +95,11 @@ svg {
     align-items: center;
 }
 
+
 .parkListAll {
     width: 100%;
     max-width: 60rem;
+    max-height: 14rem;
 }
 
 .list_place:hover {
@@ -121,4 +123,13 @@ svg {
 
 .btn:hover {
     background-color: rgb(192, 198, 221);
+}
+
+.btn-lg_1 {
+    background-color: rgb(146, 192, 214);
+    font-size: 0.8rem;
+    width: 100%;
+    /* max-width: 20rem; */
+    margin-right: 1rem;
+    margin-left: 0rem;
 }

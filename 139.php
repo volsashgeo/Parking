@@ -23,7 +23,7 @@ $result = mysqli_fetch_assoc($result_a);
 </head>
 
 <body>
-    <div class="container-xs">
+    <div class="container-fluid">
         <div class="col-xs-6 ml-3">
             <div class="map">
                 <svg viewBox="0 0 750 886" id="1">

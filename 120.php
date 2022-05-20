@@ -17,13 +17,11 @@ $result = mysqli_fetch_assoc($result_a);
     <link rel="stylesheet" href="/styles_2.css">
     <link rel="shortcut icon" href="./img/parking.png"/>
     <title>Место 120</title>
-    <style>
-
-    </style>
+    
 </head>
 
 <body>
-    <div class="container-xs">
+    <div class="container-fluid">
         <div class="col-xs-6 ml-3">
             <div class="map">
                 <svg viewBox="0 0 750 886" id="1">
