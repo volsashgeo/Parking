@@ -18,7 +18,8 @@ body {
 
     .map,
     img,
-    #parkListName,
+    #parkListNameUp,
+    #parkListNameDown,
     #parkListAreaUp,
     #parkListAreaDown,
     #parkListRentPriceUp,
@@ -32,7 +33,8 @@ body {
 
     .map,
     img,
-    #parkListName,
+    #parkListNameUp,
+    #parkListNameDown,
     #parkListAreaUp,
     #parkListAreaDown,
     #parkListRentPriceUp,
@@ -80,7 +82,8 @@ svg {
     opacity: 0.5;
 }
 
-#parkListName,
+#parkListNameUp,
+#parkListNameDown,
 #parkListAreaUp,
 #parkListAreaDown,
 #parkListRentPriceUp,

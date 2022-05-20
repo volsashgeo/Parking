@@ -1,7 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 $mysqli = mysqli_connect("localhost", "zykcyspz_0207", "12345", "zykcyspz_0207");
-$result_name = mysqli_query($mysqli, "SELECT * FROM `parking`"); // выборка всех мест в паркинге по возрастанию имени
+$result_name_up = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `name`"); // выборка всех мест в паркинге по возрастанию номера
+$result_name_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `name`DESC"); // выборка всех мест в паркинге по убыванию номера 
 
 // $result_mm = mysqli_query($mysqli, "SELECT * FROM `parking` WHERE `implement`= "MM""); // выборка только машиномест
 
@@ -157,17 +158,18 @@ $result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY
                 </div>
                 <div id="parkListSort" class="row my-1">
                     <!-- начало кнопок сортировки -->
-                    <button type="button" class="btn btn-sm col-xs-2 col-2" id="showParkListName"><span> возр. номера места</span></button>
+                    <button type="button" class="btn btn-sm col-xs-2 col-2" id="showParkListNameUp"><span> возр. номера места</span></button>
+                    <button type="button" class="btn btn-sm col-xs-2 col-2" id="showParkListNameDown"><span> убыв. номера места</span></button>
                     <button type="button" class="btn btn-sm col-xs-5  col-2" id="showParkListAreaUp"><span>возр. площади места</span></button>
                     <button type="button" class="btn btn-sm col-xs-5  col-2" id="showParkListAreaDown"><span>убыв. площади места</span></button>
 
-                    <button type="button" class="btn btn-sm col-xs-6 col-3" id="showParkListRentPriceUp"><span>возр. стоимости аренды</span></button>
-                    <button type="button" class="btn btn-sm col-xs-6 col-3" id="showParkListRentPriceDown"><span>убыв. стоимости аренды</span></button>
+                    <button type="button" class="btn btn-sm col-xs-6 col-2" id="showParkListRentPriceUp"><span>возр. стоимости аренды</span></button>
+                    <button type="button" class="btn btn-sm col-xs-6 col-2" id="showParkListRentPriceDown"><span>убыв. стоимости аренды</span></button>
                 </div>
                 <!-- конец кнопок сортировки -->
                 <!-- начало списка с сортировкой по возрастанию номера места -->
-                <div id="parkListName" class="my-1 overflow-auto">
-                    <?php while ($parking = mysqli_fetch_assoc($result_name)) { ?>
+                <div id="parkListNameUp" class="my-1 overflow-auto">
+                    <?php while ($parking = mysqli_fetch_assoc($result_name_up)) { ?>
                         <p class="list_place list_place_names">
                             <a href="/<?php echo $parking['name'] ?>.php" style="color: black; font-size: 1.1rem;border: 1px solid black;" role="button" class="btn">
                                 <span><?php echo $parking['id'] ?>. </span>
@@ -181,6 +183,22 @@ $result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY
                     ?>
                 </div>
                 <!-- конец списка с сортировкой по возрастанию номера места -->
+                <!-- начало списка с сортировкой по убыванию номера места -->
+                <div id="parkListNameDown" class="my-1 overflow-auto">
+                    <?php while ($parking = mysqli_fetch_assoc($result_name_down)) { ?>
+                        <p class="list_place list_place_names">
+                            <a href="/<?php echo $parking['name'] ?>.php" style="color: black; font-size: 1.1rem;border: 1px solid black;" role="button" class="btn">
+                                <span><?php echo $parking['id'] ?>. </span>
+                                <span> Место: <span><?php echo $parking['name'] ?></span> </span>
+                                <span>Площадь: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['area'] ?></span> м<sup>2</span>
+                                <span>Стоимость аренды: <span style=" color: white; background-color: rgb(81, 23, 164);"><?php echo $parking['rentPrice'] ?></span> руб.</span>
+                            </a>
+                        </p>
+                    <?php
+                    }
+                    ?>
+                </div>
+                <!-- конец списка с сортировкой по убыванию места -->
 
                 <!-- начало списка с сортировкой по возрастанию площади -->
                 <div id="parkListAreaUp" class="my-1 overflow-auto" hidden>
@@ -308,29 +326,50 @@ $result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY
             });
         }
         // Видимость списка с сортировкой по возрастанию номера- начало
-        showParkListName.addEventListener("click", () => {
-            parkListName.hidden = false;
+        showParkListNameUp.addEventListener("click", () => {
+            parkListNameUp.hidden = false;
+            parkListNameDown.hidden = true;
             parkListAreaUp.hidden = true;
             parkListAreaDown.hidden = true;
             parkListRentPriceUp.hidden = true;
             parkListRentPriceDown.hidden = true;
 
-            showParkListName.style.backgroundColor = "rgb(141, 186, 238)";
+            showParkListNameUp.style.backgroundColor = "rgb(141, 186, 238)";
+            showParkListNameDown.style.backgroundColor = "rgb(241, 230, 209)";
             showParkListAreaUp.style.backgroundColor = "rgb(241, 230, 209)";
             showParkListAreaDown.style.backgroundColor = "rgb(241, 230, 209)";
             showParkListRentPriceUp.style.backgroundColor = "rgb(241, 230, 209)";
             showParkListRentPriceDown.style.backgroundColor = "rgb(241, 230, 209)";
         });
-        //Видимость списка с сортировкой по возрастанию номера- конец       
+        //Видимость списка с сортировкой по возрастанию номера- конец   
+        // Видимость списка с сортировкой по убыванию номера- начало
+        showParkListNameDown.addEventListener("click", () => {
+            parkListNameUp.hidden = true;
+            parkListNameDown.hidden = false;
+            parkListAreaUp.hidden = true;
+            parkListAreaDown.hidden = true;
+            parkListRentPriceUp.hidden = true;
+            parkListRentPriceDown.hidden = true;
+
+            showParkListNameUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListNameDown.style.backgroundColor = "rgb(141, 186, 238)";
+            showParkListAreaUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListAreaDown.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListRentPriceUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListRentPriceDown.style.backgroundColor = "rgb(241, 230, 209)";
+        });
+        //Видимость списка с сортировкой по убыванию номера- конец     
         //Видимость списка с сортировкой по возрастанию площади- начало
         showParkListAreaUp.addEventListener("click", () => {
-            parkListName.hidden = true;
+            parkListNameUp.hidden = true;
+            parkListNameDown.hidden = true;
             parkListAreaUp.hidden = false;
             parkListAreaDown.hidden = true;
             parkListRentPriceUp.hidden = true;
             parkListRentPriceDown.hidden = true;
 
-            showParkListName.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListNameUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListNameDown.style.backgroundColor = "rgb(241, 230, 209)";
             showParkListAreaUp.style.backgroundColor = "rgb(141, 186, 238)";
             showParkListAreaDown.style.backgroundColor = "rgb(241, 230, 209)";
             showParkListRentPriceUp.style.backgroundColor = "rgb(241, 230, 209)";
@@ -339,12 +378,15 @@ $result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY
         //Видимость списка с сортировкой по возрастанию площади- конец
         //Видимость списка с сортировкой по убыванию площади- начало
         showParkListAreaDown.addEventListener("click", () => {
-            parkListName.hidden = true;
+            parkListNameUp.hidden = true;
+            parkListNameDown.hidden = true;
             parkListAreaUp.hidden = true;
             parkListAreaDown.hidden = false;
             parkListRentPriceUp.hidden = true;
             parkListRentPriceDown.hidden = true;
 
+            showParkListNameUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListNameDown.style.backgroundColor = "rgb(241, 230, 209)";
             showParkListAreaUp.style.backgroundColor = "rgb(241, 230, 209)";
             showParkListAreaDown.style.backgroundColor = "rgb(141, 186, 238)";
             showParkListRentPriceUp.style.backgroundColor = "rgb(241, 230, 209)";
@@ -353,12 +395,15 @@ $result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY
         //Видимость списка с сортировкой по убыванию площади- конец
         //Видимость списка с сортировкой по возрастанию цены аренды- начало
         showParkListRentPriceUp.addEventListener("click", () => {
-            parkListName.hidden = true;
+            parkListNameUp.hidden = true;
+            parkListNameDown.hidden = true;
             parkListAreaUp.hidden = true;
             parkListAreaDown.hidden = true;
             parkListRentPriceUp.hidden = false;
             parkListRentPriceDown.hidden = true;
 
+            showParkListNameUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListNameDown.style.backgroundColor = "rgb(241, 230, 209)";
             showParkListAreaUp.style.backgroundColor = "rgb(241, 230, 209)";
             showParkListAreaDown.style.backgroundColor = "rgb(241, 230, 209)";
             showParkListRentPriceUp.style.backgroundColor = "rgb(141, 186, 238)";
@@ -367,12 +412,15 @@ $result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY
         //Видимость списка с сортировкой по возрастанию цены аренды- конец
         //Видимость списка с сортировкой по убыванию цены аренды- начало
         showParkListRentPriceDown.addEventListener("click", () => {
-            parkListName.hidden = true;
+            parkListNameUp.hidden = true;
+            parkListNameDown.hidden = true;
             parkListAreaUp.hidden = true;
             parkListAreaDown.hidden = true;
             parkListRentPriceUp.hidden = true;
             parkListRentPriceDown.hidden = false;
 
+            showParkListNameUp.style.backgroundColor = "rgb(241, 230, 209)";
+            showParkListNameDown.style.backgroundColor = "rgb(241, 230, 209)";
             showParkListAreaUp.style.backgroundColor = "rgb(241, 230, 209)";
             showParkListAreaDown.style.backgroundColor = "rgb(241, 230, 209)";
             showParkListRentPriceUp.style.backgroundColor = "rgb(241, 230, 209)";
