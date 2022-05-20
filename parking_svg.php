@@ -184,7 +184,7 @@ $result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY
                 </div>
                 <!-- конец списка с сортировкой по возрастанию номера места -->
                 <!-- начало списка с сортировкой по убыванию номера места -->
-                <div id="parkListNameDown" class="my-1 overflow-auto">
+                <div id="parkListNameDown" class="my-1 overflow-auto" hidden>
                     <?php while ($parking = mysqli_fetch_assoc($result_name_down)) { ?>
                         <p class="list_place list_place_names">
                             <a href="/<?php echo $parking['name'] ?>.php" style="color: black; font-size: 1.1rem;border: 1px solid black;" role="button" class="btn">
