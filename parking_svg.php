@@ -1,16 +1,18 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 $mysqli = mysqli_connect("localhost", "zykcyspz_0207", "12345", "zykcyspz_0207");
-$result_name_up = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `name`"); // выборка всех мест в паркинге по возрастанию номера
-$result_name_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `name`DESC"); // выборка всех мест в паркинге по убыванию номера 
+$result_name_up = mysqli_query($mysqli, "SELECT * FROM `parking` WHERE `status`= 'free' ORDER BY `name`"); // выборка всех мест в паркинге по возрастанию номера
+$result_name_down = mysqli_query($mysqli, "SELECT * FROM `parking` WHERE `status`= 'free' ORDER BY `name` DESC"); // выборка всех мест в паркинге по убыванию номера 
 
 // $result_mm = mysqli_query($mysqli, "SELECT * FROM `parking` WHERE `implement`= "MM""); // выборка только машиномест
 
-$result_area_up = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `area`"); // выборка всех мест в паркинге по возрастанию площадей
-$result_area_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `area`DESC"); //выборка всех мест в паркинге по убыванию площадей
+$result_area_up = mysqli_query($mysqli, "SELECT * FROM `parking` WHERE `status`= 'free' ORDER BY `area`"); // выборка всех мест в паркинге по возрастанию площадей
+$result_area_down = mysqli_query($mysqli, "SELECT * FROM `parking` WHERE `status`= 'free' ORDER BY `area`DESC"); //выборка всех мест в паркинге по убыванию площадей
 
-$result_rentPrice_up = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `rentPrice`"); // выборка всех мест в паркинге по возрастанию площадей
-$result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY `rentPrice`DESC"); // выборка всех мест в паркинге по убыванию площадей
+$result_rentPrice_up = mysqli_query($mysqli, "SELECT * FROM `parking` WHERE `status`= 'free' ORDER BY `rentPrice`"); // выборка всех мест в паркинге по возрастанию площадей
+$result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` WHERE `status`= 'free' ORDER BY `rentPrice`DESC"); // выборка всех мест в паркинге по убыванию площадей
+
+$result_busy = mysqli_query($mysqli, "SELECT * FROM `parking` WHERE `status`= 'busy'"); // выборка всех занятых (арендованных) мест в паркинге 
 
 ?>
 <!doctype html>
@@ -167,6 +169,17 @@ $result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY
                     <button type="button" class="btn btn-sm col-xs-6 col-2" id="showParkListRentPriceDown"><span>убыв. стоимости аренды</span></button>
                 </div>
                 <!-- конец кнопок сортировки -->
+
+                <!-- начало списка занятых мест -->
+                <div id="parkListBusy" class="my-1" hidden>
+                    <?php while ($parking_busy = mysqli_fetch_assoc($result_busy)) { ?>
+                        <span class="park_list_busy"><?php echo $parking_busy['name'] ?></span>
+                    <?php
+                    }
+                    ?>
+                </div>
+                <!-- конец списка занятых мест -->
+
                 <!-- начало списка с сортировкой по возрастанию номера места -->
                 <div id="parkListNameUp" class="my-1 overflow-auto">
                     <?php while ($parking = mysqli_fetch_assoc($result_name_up)) { ?>
@@ -277,11 +290,12 @@ $result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY
 
     </div>
     <script>
+        // начало работы со вспомогательными переменными
         let list_place_areas = document.getElementsByClassName("list_place_areas");
         let list_place_names = document.getElementsByClassName("list_place_names");
         let list_place_rentPrices = document.getElementsByClassName("list_place_rentPrices");
 
-        let elemSpiskaNames = [];
+        let elemSpiskaNames = []; 
         for (i = 0; i < list_place_names.length; i++) {
             elemSpiskaNames.push(list_place_names[i].children[0].children[1].children[0].innerText);
         }
@@ -295,11 +309,14 @@ $result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY
         for (i = 0; i < list_place_rentPrices.length; i++) {
             elemSpiskaRentPrices.push(list_place_rentPrices[i].children[0].children[1].children[0].innerText);
         }
+        // конец работы со вспомогательными переменными
+        
+        for (let i = 0; i < document.getElementsByClassName("park_list_busy").length; i++) { // реализация неактивного перехода по ссылке и прокрашивание красным цветом занятятого места
+            document.getElementById(parkListBusy.children[i].innerText).style.fill = 'red';
+            document.getElementById(parkListBusy.children[i].innerText).parentNode.href.baseVal = '#';
+        }
 
-
-
-
-        for (let i = 0; i < list_place_rentPrices.length; i++) {
+        for (let i = 0; i < list_place_rentPrices.length; i++) {          // меняется прозрачность цвета при наведении на списки по изменению стоимости аренды
             list_place_rentPrices[i].addEventListener("mouseover", () => {
                 return document.getElementById(elemSpiskaRentPrices[i]).style.opacity = 1;
             });
@@ -308,7 +325,7 @@ $result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY
             });
         }
 
-        for (let i = 0; i < list_place_areas.length; i++) {
+        for (let i = 0; i < list_place_areas.length; i++) {               // меняется прозрачность цвета при наведении на списки по изменению площади
             list_place_areas[i].addEventListener("mouseover", () => {
                 return document.getElementById(elemSpiskaAreas[i]).style.opacity = 1;
             });
@@ -317,7 +334,7 @@ $result_rentPrice_down = mysqli_query($mysqli, "SELECT * FROM `parking` ORDER BY
             });
         }
 
-        for (let i = 0; i < list_place_names.length; i++) {
+        for (let i = 0; i < list_place_names.length; i++) {             // меняется прозрачность цвета при наведении на списки по изменению названия
             list_place_names[i].addEventListener("mouseover", () => {
                 return document.getElementById(elemSpiskaNames[i]).style.opacity = 1;
             });
