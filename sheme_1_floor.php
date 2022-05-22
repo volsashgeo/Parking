@@ -62,11 +62,6 @@ $result_busy = mysqli_query($mysqli, "SELECT * FROM `parking` WHERE `status`= 'b
       height: 100%;
     }
 
-    .btn-lg_1 {
-      margin-left: 15px;
-      margin-right: auto;
-      display: block;
-    }
   </style>
 </head>
 
@@ -188,7 +183,16 @@ $result_busy = mysqli_query($mysqli, "SELECT * FROM `parking` WHERE `status`= 'b
     </div>
   </div>
   <!--конец работы с  картинкой  -->
-  <a href="/index.html" class="btn btn-lg_1 active col-3" role="button" aria-pressed="true">На главную страницу</a>
+
+
+  <div class="row mx-1">
+      <a href="/index.html" class="btn col-3" role="button" aria-pressed="true" style="background-color: rgb(146, 192, 214); height: 100%;">На главную страницу</a>
+      <p class="col-4"><button type="button" class="btn btn-sm " disabled style="width:1rem ; height:1rem; opacity: 0.3;
+         background-color: blue;"></button> <button type="button" class="btn btn-sm " disabled style="width:1rem ; height:1rem; opacity: 0.3;
+         background-color: green;"></button></br> Свободные места</p>
+      <p class="col-4"><button type="button" class="btn btn-sm " disabled style="width:1rem ; height:1rem; opacity: 0.3;
+        background-color: red;"></button></br> Занятые места</p>
+  </div>
 
   <script>
     for (let i = 0; i < document.getElementsByClassName("park_list_busy").length; i++) { // реализация неактивного перехода по ссылке и прокрашивание красным цветом занятятого места
