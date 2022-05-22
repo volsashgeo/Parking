@@ -112,10 +112,7 @@ svg {
 
 .btn {
     width: 100%;
-    /* height: auto; */
-
     background-color: rgb(241, 230, 209);
-
     text-align: center;
     padding: 0.3rem;
     border: 1px solid black;
@@ -128,11 +125,3 @@ svg {
     background-color: rgb(192, 198, 221);
 }
 
-.btn-lg_1 {
-    background-color: rgb(146, 192, 214);
-    font-size: 0.8rem;
-    width: 100%;
-    /* max-width: 20rem; */
-    margin-right: 1rem;
-    margin-left: 0rem;
-}
